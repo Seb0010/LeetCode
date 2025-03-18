@@ -1,0 +1,20 @@
+int climbStairs(int n){
+int p, pp, k, i;
+
+if (n == 1) return 1;
+if (n == 2) return 2;
+
+p = 2;
+pp = 1;
+
+for (i = 3; i <= n; i++) {
+k = p + pp;
+pp = p;
+p = k;
+}
+return p;
+}
+
+Runtime : 0ms
+Memory : 7.46MB
+Beats 100% / 100%
