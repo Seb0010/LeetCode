@@ -1,0 +1,55 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+
+// Function to reverse a string (array of characters)
+void reverse(char* str, int len) {
+    int i, j;
+    char temp;
+    for (i = 0, j = len - 1; i < j; i++, j--) {
+        temp = str[i];
+        str[i] = str[j];
+        str[j] = temp;
+    }
+}
+
+// Function to add two binary strings and return the result
+char* addBinary(const char* a, const char* b) {
+    int i = strlen(a) - 1;  // Get the length of string a
+    int j = strlen(b) - 1;  // Get the length of string b
+    int carry = 0;
+    
+    // Corrected memory allocation
+    int maxLength = (strlen(a) > strlen(b) ? strlen(a) : strlen(b)) + 2;
+    
+    // Allocate memory and check for allocation failure
+    char* result = (char*)malloc(maxLength * sizeof(char));
+    if (result == NULL) {
+        printf("Memory allocation failed\n");
+        return NULL;
+    }
+
+    int k = 0;  // Index for result
+    
+    // Process both strings from the last character to the first
+    while (i >= 0 || j >= 0 || carry > 0) {
+        carry += (i >= 0) ? a[i--] - '0' : 0;  // Add binary digit from a, or 0 if i < 0
+        carry += (j >= 0) ? b[j--] - '0' : 0;  // Add binary digit from b, or 0 if j < 0
+        
+        result[k++] = (carry % 2) + '0';  // Append result of carry % 2 as a char
+        carry /= 2;  // Update carry for the next iteration
+    }
+
+    result[k] = '\0';  // Null-terminate the result
+    
+    // Reverse the result, since we processed digits from the least significant bit first
+    reverse(result, k);
+    
+    return result;  // Return the result string
+}
+
+
+
+Runtime : 0ms
+Memory : 8.01MB
+Beats 100% / 72%
