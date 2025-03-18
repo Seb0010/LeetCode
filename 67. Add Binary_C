@@ -13,6 +13,8 @@ void reverse(char* str, int len) {
     }
 }
 
+
+
 // Function to add two binary strings and return the result
 char* addBinary(const char* a, const char* b) {
     int i = strlen(a) - 1;  // Get the length of string a
