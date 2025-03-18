@@ -1,0 +1,13 @@
+int singleNumber(int* nums, int numsSize) {
+
+int sum = nums[0];    
+for (int i=1; i<numsSize; i++){
+    sum = sum ^ nums[i];
+}
+return sum;
+}
+
+
+Runtime : 0ms
+Memory : 9MB
+Beats 100% / 100%
